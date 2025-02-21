@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive To-Do List</title>
+</head>
+<body>
+
+    <h1>Interactive To-Do List</h1>
+
+    <input type="text" id="todoInput" placeholder="Enter a new task">
+    <button id="addButton">Add</button>
+
+    <ul id="todoList">
+    </ul>
+
+    <script>
+        const todoInput = document.getElementById("todoInput");
+        const addButton = document.getElementById("addButton");
+        const todoList = document.getElementById("todoList");
+
+        addButton.addEventListener("click", function() {
+            const taskText = todoInput.value.trim();
+            if (taskText) {
+                addTask(taskText);
+                todoInput.value = ""; 
+            }
+        });
+
+        function addTask(taskText) {
+            const listItem = document.createElement("li");
+
+            const textNode = document.createTextNode(taskText);
+
+            const removeButton = document.createElement("button");
+            removeButton.textContent = "Remove";
+
+
+            removeButton.addEventListener("click", function() {
+                todoList.removeChild(listItem); 
+            });
+
+
+            listItem.appendChild(textNode);
+            listItem.appendChild(removeButton);
+
+            todoList.appendChild(listItem);
+        }
+    </script>
