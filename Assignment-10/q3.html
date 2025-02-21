@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Order Form</title>
+</head>
+<body>
+
+    <h1>Pizza Order Form</h1>
+
+    <fieldset>
+        <legend>Choose Pizza Size:</legend>
+        <input type="radio" id="small" name="size" value="Small">
+        <label for="small">Small</label><br>
+        <input type="radio" id="medium" name="size" value="Medium">
+        <label for="medium">Medium</label><br>
+        <input type="radio" id="large" name="size" value="Large">
+        <label for="large">Large</label>
+    </fieldset>
+
+    <fieldset>
+        <legend>Select Toppings (You can select multiple):</legend>
+        <input type="checkbox" id="cheese" value="Cheese">
+        <label for="cheese">Cheese</label><br>
+        <input type="checkbox" id="pepperoni" value="Pepperoni">
+        <label for="pepperoni">Pepperoni</label><br>
+        <input type="checkbox" id="mushrooms" value="Mushrooms">
+        <label for="mushrooms">Mushrooms</label><br>
+        <input type="checkbox" id="olives" value="Olives">
+        <label for="olives">Olives</label><br>
+    </fieldset>
+
+    <button onclick="submitOrder()">Submit Order</button>
+
+    <h2>Order Summary</h2>
+    <p id="summary"></p>
+
+    <script>
+        function submitOrder() {
+            let pizzaSize = document.querySelector('input[name="size"]:checked');
+            let size = pizzaSize ? pizzaSize.value : "No size selected";
+
+            let toppings = [];
+            let toppingCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            toppingCheckboxes.forEach(function(topping) {
+                toppings.push(topping.value);
+            });
+            let toppingsList = toppings.length > 0 ? toppings.join(", ") : "No toppings selected";
+
+            let summary = `Your Order Summary: <br> Size: ${size} <br> Toppings: ${toppingsList}`;
+            document.getElementById("summary").innerHTML = summary;
+        }
+    </script>
+
+</body>
+</html>
