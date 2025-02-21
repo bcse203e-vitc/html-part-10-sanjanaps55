@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game (do...while loop)</title>
+</head>
+<body>
+
+<h1>Guess a Number Between 1 and 50</h1>
+
+<input type="number" id="userGuess" placeholder="Enter your guess" />
+<button onclick="checkGuessDoWhile()">Guess</button>
+<p id="message"></p>
+
+<script>
+    let numberToGuess = Math.floor(Math.random() * 50) + 1;
+
+    function checkGuessDoWhile() {
+        let userGuess;
+        let message = document.getElementById("message");
+
+        do {
+            userGuess = parseInt(document.getElementById("userGuess").value);
+
+            if (userGuess < numberToGuess) {
+                message.textContent = "Too low! Try again.";
+            } else if (userGuess > numberToGuess) {
+                message.textContent = "Too high! Try again.";
+            }
+        } while (userGuess !== numberToGuess);
+
+        message.textContent = "Congratulations! You've guessed the correct number!";
+    }
+</script>
+
+</body>
+</html>
